@@ -3,16 +3,24 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MediaGallery } from './ProjectMedia.jsx';
 
+// Hilfsfunktion: hängt BASE_URL vorne dran und entfernt doppelte Slashes
+const withBase = (path) => {
+    if (!path) return path;
+    if (path.startsWith('http')) return path;
+    const base = import.meta.env.BASE_URL || '/';
+    const cleaned = path.replace(/^\/+/, ''); // führende / löschen
+    return `${base}${cleaned}`;
+};
+
 export const ProjectCard = ({ project, index }) => {
     const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 
     const hasMedia = project.media && project.media.length > 0;
-    const thumbnailSrc =
-        project.thumbnail || (hasMedia ? project.media[0].src : null);
 
-    // 🔹 NEW: detect if the thumbnail is a .webm (video)
-    const isVideoThumb =
-        thumbnailSrc && thumbnailSrc.toLowerCase().endsWith('.webm');
+    // Thumb-Pfad durch withBase schicken
+    const rawThumb =
+        project.thumbnail || (hasMedia ? project.media[0].src : null);
+    const thumbnailSrc = rawThumb ? withBase(rawThumb) : null;
 
     const openGallery = () => {
         console.log('OPENING GALLERY WITH MEDIA:', project.media);
@@ -42,23 +50,11 @@ export const ProjectCard = ({ project, index }) => {
                             onClick={openGallery}
                             className="block w-full overflow-hidden rounded-2xl border border-black/10 bg-black/30 dark:border-white/10"
                         >
-                            {/* if GIF/video, browser will still show first frame as thumb */}
-                            {isVideoThumb ? (
-                                <video
-                                    src={thumbnailSrc}
-                                    autoPlay
-                                    loop
-                                    muted
-                                    playsInline
-                                    className="h-56 w-full object-cover md:h-64"
-                                />
-                            ) : (
-                                <img
-                                    src={thumbnailSrc}
-                                    alt={project.title}
-                                    className="h-56 w-full object-cover md:h-64"
-                                />
-                            )}
+                            <img
+                                src={thumbnailSrc}
+                                alt={project.title}
+                                className="h-56 w-full object-cover md:h-64"
+                            />
                         </button>
                     ) : (
                         <div className="flex h-32 items-center justify-center rounded-2xl border border-dashed border-slate-400/40 bg-slate-50/40 text-xs text-slate-500 dark:border-slate-600/50 dark:bg-slate-900/40 dark:text-slate-400">
@@ -112,11 +108,11 @@ export const ProjectCard = ({ project, index }) => {
                         </div>
                     )}
 
-                    {/* Tools left — Team right */}
+                    {/* Tools links — Team rechts */}
                     <div className="pt-3 grid grid-cols-2 gap-4 text-xs text-slate-600 dark:text-slate-400">
                         {/* LEFT COLUMN — Tools */}
                         <div>
-                            <div className="font-mono text-[11px] md:text-[12px] font-semibold uppercase tracking-[0.25em] mb-1 text-slate-700 dark:text-slate-300">
+                            <div className="mb-1 font-mono text-[11px] font-semibold uppercase tracking-[0.25em] text-slate-700 dark:text-slate-300 md:text-[12px]">
                                 Tools
                             </div>
                             <div className="leading-relaxed">
@@ -124,13 +120,13 @@ export const ProjectCard = ({ project, index }) => {
                             </div>
                         </div>
 
-                        {/* RIGHT COLUMN — Team (aligned name + role, content text-left, block sits right) */}
+                        {/* RIGHT COLUMN — Team */}
                         <div className="text-right">
-                            <div className="font-mono text-[11px] md:text-[12px] font-semibold uppercase tracking-[0.25em] mb-1 text-slate-700 dark:text-slate-300">
+                            <div className="mb-1 font-mono text-[11px] font-semibold uppercase tracking-[0.25em] text-slate-700 dark:text-slate-300 md:text-[12px]">
                                 Team
                             </div>
 
-                            <div className="space-y-1 leading-relaxed inline-block text-left">
+                            <div className="inline-block space-y-1 text-left leading-relaxed">
                                 {project.groupMembers?.map((m, i) => {
                                     const [name, role] = m.split('–').map((s) => s.trim());
                                     return (
@@ -138,12 +134,9 @@ export const ProjectCard = ({ project, index }) => {
                                             key={i}
                                             className="grid grid-cols-[max-content_1fr] gap-2 whitespace-nowrap"
                                         >
-                                            {/* Name */}
                                             <span className="font-medium text-slate-800 dark:text-slate-200">
                                                 {name}
                                             </span>
-
-                                            {/* Role */}
                                             <span className="text-slate-500 dark:text-slate-400">
                                                 {role}
                                             </span>
@@ -161,7 +154,7 @@ export const ProjectCard = ({ project, index }) => {
                             onClick={openGallery}
                             className="mt-4 inline-flex items-center rounded-full border border-amber-500/50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-amber-800 hover:bg-amber-500/10 dark:border-amber-300/60 dark:text-amber-200"
                         >
-                            View gameplay & media
+                            View gameplay &amp; media
                         </button>
                     )}
                 </div>
