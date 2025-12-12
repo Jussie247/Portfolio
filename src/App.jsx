@@ -368,7 +368,7 @@ function App() {
               <p>
                 My work focuses on how mechanics, layout and feedback influence
                 player decisions. I enjoy prototyping quickly, testing with real
-                players and learning from what works – and what does not. Right
+                players and learning from what works and what does not. Right
                 now, I am actively developing my level design skills through
                 small layout experiments and design studies.
               </p>
@@ -515,7 +515,7 @@ function App() {
             {/* Group 1: Design focus */}
             <div className="space-y-4">
               <h3 className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-600 dark:text-slate-300">
-                Design focus — using now
+                Design focus
               </h3>
 
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
