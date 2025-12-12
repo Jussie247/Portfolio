@@ -586,7 +586,11 @@ function App() {
                 {/* Unreal */}
                 <div className="flex flex-col items-center gap-2">
                   <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-slate-200 bg-white/90 dark:border-slate-700 dark:bg-slate-900">
-                    <img src="/icons/unreal.svg" alt="Unreal Engine" className="h-8 w-8 object-contain" />
+                    <img
+                      src={withBase('/icons/unreal.svg')}
+                      alt="Unreal"
+                      className="h-8 w-8 object-contain"
+                    />
                   </div>
                   <span className="text-[0.7rem] font-medium tracking-wide text-slate-700 dark:text-slate-200">
                     Unreal Engine
@@ -596,7 +600,11 @@ function App() {
                 {/* Godot */}
                 <div className="flex flex-col items-center gap-2">
                   <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-slate-200 bg-white/90 dark:border-slate-700 dark:bg-slate-900">
-                    <img src="/icons/godot.svg" alt="Godot" className="h-8 w-8 object-contain" />
+                    <img
+                      src={withBase('/icons/godot.svg')}
+                      alt="Godot"
+                      className="h-8 w-8 object-contain"
+                    />
                   </div>
                   <span className="text-[0.7rem] font-medium tracking-wide text-slate-700 dark:text-slate-200">
                     Godot
@@ -606,7 +614,11 @@ function App() {
                 {/* FMOD */}
                 <div className="flex flex-col items-center gap-2">
                   <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-slate-200 bg-white/90 dark:border-slate-700 dark:bg-slate-900">
-                    <img src="/icons/fmod.svg" alt="FMOD" className="h-8 w-8 object-contain" />
+                    <img
+                      src={withBase('/icons/fmod.svg')}
+                      alt="FMOD"
+                      className="h-8 w-8 object-contain"
+                    />
                   </div>
                   <span className="text-[0.7rem] font-medium tracking-wide text-slate-700 dark:text-slate-200">
                     FMOD
@@ -616,7 +628,11 @@ function App() {
                 {/* Blender */}
                 <div className="flex flex-col items-center gap-2">
                   <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-slate-200 bg-white/90 dark:border-slate-700 dark:bg-slate-900">
-                    <img src="/icons/blender.svg" alt="Blender" className="h-8 w-8 object-contain" />
+                    <img
+                      src={withBase('/icons/blender.svg')}
+                      alt="Blender"
+                      className="h-8 w-8 object-contain"
+                    />
                   </div>
                   <span className="text-[0.7rem] font-medium tracking-wide text-slate-700 dark:text-slate-200">
                     Blender
@@ -626,7 +642,11 @@ function App() {
                 {/* Github*/}
                 <div className="flex flex-col items-center gap-2">
                   <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-slate-200 bg-white/90 dark:border-slate-700 dark:bg-slate-900">
-                    <img src="/icons/github.svg" alt="GitHub" className="h-7 w-7 object-contain" />
+                    <img
+                      src={withBase('/icons/github.svg')}
+                      alt="Github"
+                      className="h-8 w-8 object-contain"
+                    />
                   </div>
                   <span className="text-[0.7rem] font-medium tracking-wide text-slate-700 dark:text-slate-200">
                     Git / GitHub
@@ -636,7 +656,11 @@ function App() {
                 {/* Typescript*/}
                 <div className="flex flex-col items-center gap-2 col-start-3 sm:col-start-3 md:col-start-3">
                   <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-slate-200 bg-white/90 dark:border-slate-700 dark:bg-slate-900">
-                    <img src="/icons/typescript.svg" alt="TypeScript" className="h-8 w-8 object-contain" />
+                    <img
+                      src={withBase('/icons/typescript.svg')}
+                      alt="Typescript"
+                      className="h-8 w-8 object-contain"
+                    />
 
                   </div>
                   <span className="text-[0.7rem] font-medium tracking-wide text-slate-700 dark:text-slate-200">
@@ -647,7 +671,11 @@ function App() {
                 {/* JavaScript — now directly under FMOD */}
                 <div className="flex flex-col items-center gap-2 col-start-4 sm:col-start-4 md:col-start-4">
                   <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-slate-200 bg-white/90 dark:border-slate-700 dark:bg-slate-900">
-                    <img src="/icons/js.svg" alt="JavaScript" className="h-8 w-8 object-contain" />
+                    <img
+                      src={withBase('/icons/js.svg')}
+                      alt="Javascript"
+                      className="h-8 w-8 object-contain"
+                    />
                   </div>
                   <span className="text-[0.7rem] font-medium tracking-wide text-slate-700 dark:text-slate-200">
                     JavaScript / Web tools
