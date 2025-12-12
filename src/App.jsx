@@ -714,7 +714,7 @@ function App() {
                   href="mailto:your.email@example.com"
                   className="text-base font-medium text-accent underline-offset-4 hover:underline md:text-lg"
                 >
-                  your.email@example.com
+                  schultzke.justus@gmail.com
                 </a>
               </div>
               <div className="mt-4 flex flex-wrap gap-4 text-xs text-slate-500 dark:text-slate-400">
@@ -725,10 +725,7 @@ function App() {
                 >
                   LinkedIn
                 </a>
-                <a href="#" className="hover:text-accent" aria-label="Itch.io">
-                  Itch.io
-                </a>
-                <a href="#" className="hover:text-accent" aria-label="GitHub">
+                <a href="https://github.com/Jussie247" className="hover:text-accent" aria-label="GitHub">
                   GitHub
                 </a>
               </div>
