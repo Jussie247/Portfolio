@@ -719,7 +719,7 @@ function App() {
               </div>
               <div className="mt-4 flex flex-wrap gap-4 text-xs text-slate-500 dark:text-slate-400">
                 <a
-                  href="#"
+                  href="https://www.linkedin.com/in/justus-schultzke-93795a3a0/"
                   className="hover:text-accent"
                   aria-label="LinkedIn profile"
                 >
