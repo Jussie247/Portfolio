@@ -3,12 +3,19 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MediaGallery } from './ProjectMedia.jsx';
 
-// Hilfsfunktion: hängt BASE_URL vorne dran und entfernt doppelte Slashes
+// Helper: wandle relative Pfade korrekt für Dev & GitHub Pages um
 const withBase = (path) => {
     if (!path) return path;
     if (path.startsWith('http')) return path;
+
+    // Dev-Server: immer ab Root, ohne /Portfolio
+    if (import.meta.env.DEV) {
+        return '/' + path.replace(/^\/+/, '');
+    }
+
+    // Build (GitHub Pages): BASE_URL (z.B. /Portfolio/) berücksichtigen
     const base = import.meta.env.BASE_URL || '/';
-    const cleaned = path.replace(/^\/+/, ''); // führende / löschen
+    const cleaned = path.replace(/^\/+/, '');
     return `${base}${cleaned}`;
 };
 
@@ -17,10 +24,16 @@ export const ProjectCard = ({ project, index }) => {
 
     const hasMedia = project.media && project.media.length > 0;
 
-    // Thumb-Pfad durch withBase schicken
-    const rawThumb =
+    // Rohes Thumbnail (kann Bild oder Video sein)
+    const rawThumbnail =
         project.thumbnail || (hasMedia ? project.media[0].src : null);
-    const thumbnailSrc = rawThumb ? withBase(rawThumb) : null;
+
+    // Ist das Thumbnail ein Video (webm/mp4/ogg)?
+    const isVideoThumb =
+        rawThumbnail && /\.(mp4|webm|ogg)$/i.test(rawThumbnail);
+
+    // finaler URL mit Base
+    const thumbnailSrc = rawThumbnail ? withBase(rawThumbnail) : null;
 
     const openGallery = () => {
         console.log('OPENING GALLERY WITH MEDIA:', project.media);
@@ -50,11 +63,22 @@ export const ProjectCard = ({ project, index }) => {
                             onClick={openGallery}
                             className="block w-full overflow-hidden rounded-2xl border border-black/10 bg-black/30 dark:border-white/10"
                         >
-                            <img
-                                src={thumbnailSrc}
-                                alt={project.title}
-                                className="h-56 w-full object-cover md:h-64"
-                            />
+                            {isVideoThumb ? (
+                                <video
+                                    src={thumbnailSrc}
+                                    className="h-56 w-full object-cover md:h-64"
+                                    autoPlay
+                                    loop
+                                    muted
+                                    playsInline
+                                />
+                            ) : (
+                                <img
+                                    src={thumbnailSrc}
+                                    alt={project.title}
+                                    className="h-56 w-full object-cover md:h-64"
+                                />
+                            )}
                         </button>
                     ) : (
                         <div className="flex h-32 items-center justify-center rounded-2xl border border-dashed border-slate-400/40 bg-slate-50/40 text-xs text-slate-500 dark:border-slate-600/50 dark:bg-slate-900/40 dark:text-slate-400">
@@ -120,7 +144,7 @@ export const ProjectCard = ({ project, index }) => {
                             </div>
                         </div>
 
-                        {/* RIGHT COLUMN — Team */}
+                        {/* RIGHT COLUMN — Team (aligned name + role, block rechts, Text links) */}
                         <div className="text-right">
                             <div className="mb-1 font-mono text-[11px] font-semibold uppercase tracking-[0.25em] text-slate-700 dark:text-slate-300 md:text-[12px]">
                                 Team
@@ -134,9 +158,12 @@ export const ProjectCard = ({ project, index }) => {
                                             key={i}
                                             className="grid grid-cols-[max-content_1fr] gap-2 whitespace-nowrap"
                                         >
+                                            {/* Name */}
                                             <span className="font-medium text-slate-800 dark:text-slate-200">
                                                 {name}
                                             </span>
+
+                                            {/* Role */}
                                             <span className="text-slate-500 dark:text-slate-400">
                                                 {role}
                                             </span>

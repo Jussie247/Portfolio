@@ -5,6 +5,20 @@ import { ThemeToggle } from './components/ThemeToggle.jsx';
 import { Section } from './components/Section.jsx';
 import { ProjectCard } from './components/ProjectCard.jsx';
 
+// 🔹 helper for icons (and any other images in App)
+const withBase = (path) => {
+  if (!path) return path;
+  if (path.startsWith('http')) return path;
+
+  if (import.meta.env.DEV) {
+    return '/' + path.replace(/^\/+/, '');
+  }
+
+  const base = import.meta.env.BASE_URL || '/';
+  const cleaned = path.replace(/^\/+/, '');
+  return `${base}${cleaned}`;
+};
+
 const projects = [
   {
     title: 'Dragon Feast – Rogue-like Dragon Action',
@@ -558,7 +572,11 @@ function App() {
                 {/* Unity */}
                 <div className="flex flex-col items-center gap-2">
                   <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-slate-200 bg-white/90 dark:border-slate-700 dark:bg-slate-900">
-                    <img src="/icons/unity.svg" alt="Unity" className="h-8 w-8 object-contain" />
+                    <img
+                      src={withBase('/icons/unity.svg')}
+                      alt="Unity"
+                      className="h-8 w-8 object-contain"
+                    />
                   </div>
                   <span className="text-[0.7rem] font-medium tracking-wide text-slate-700 dark:text-slate-200">
                     Unity
