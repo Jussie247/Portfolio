@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========= Global scale ========= */
+
+:root {
+  font-size: 22px;
+}
+
+/* laptops and up */
+@media (min-width: 1024px) {
+  :root {
+    font-size: 23px;
+  }
+}
+
+/* large desktops */
+@media (min-width: 1440px) {
+  :root {
+    font-size: 24px;
+  }
+}
+
+/* ultra-wide / very big screens */
+@media (min-width: 1920px) {
+  :root {
+    font-size: 25px;
+  }
+}
+
+/* ========= Base styles ========= */
+
+@layer base {
+  body {
+    @apply bg-bg-main text-slate-900 dark:text-slate-100 antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ========= Layout helpers & custom components ========= */
+
+@layer components {
+
+  /* Main content width + padding */
+  .section-container {
+    @apply mx-auto w-full max-w-6xl px-4 md:px-6 lg:px-10;
+  }
+
+  /* Soft, deep card shadow used on snapshot & contact cards */
+  .shadow-soft-xl {
+    /* plain CSS, no @apply + arbitrary value */
+    box-shadow: 0 30px 120px rgba(15, 23, 42, 0.65);
+  }
+}
+
+
+/* Premium media frame styling for project gallery */
+.media-frame {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
